@@ -8,9 +8,11 @@ using Unity.AI.Navigation;
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] public Transform[] spawnPoints; // 0 dan 1 = enemy biasa, 2 = boss
-    [SerializeField] private GameObject[] enemyPrefabs; // 0 = wave1, 1 = wave2, dst.
+    [SerializeField] private GameObject[] wave1Enemies; // List untuk wave 1
+    [SerializeField] private GameObject[] wave2Enemies; // List untuk wave 2
+    [SerializeField] private GameObject[] wave3Enemies; // List untuk wave 3
+    [SerializeField] private GameObject[] wave4Enemies; // List untuk wave 4    
     [SerializeField] private GameObject bossPrefab;
-
     [SerializeField] private WordBank wordBank;
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private NavMeshSurface navmesh;
@@ -74,7 +76,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(int waveLevel)
     {
         int spawnIndex = Random.Range(0, 2); // hanya 2 titik biasa
-        GameObject prefab = enemyPrefabs[waveLevel - 1];
+        GameObject prefab = GetEnemyPrefabForWave(waveLevel);
         Transform spawnPoint = spawnPoints[spawnIndex];
 
         GameObject enemyObj = Instantiate(prefab, spawnPoint.position, Quaternion.identity, spawnPoint);
@@ -85,6 +87,30 @@ public class WaveSpawner : MonoBehaviour
         enemy.SetWord(word);
     }
 
+
+    GameObject GetEnemyPrefabForWave(int waveLevel)
+    {
+        GameObject[] selectedWaveEnemies = new GameObject[0];
+
+        switch (waveLevel)
+        {
+            case 1:
+                selectedWaveEnemies = wave1Enemies;
+                break;
+            case 2:
+                selectedWaveEnemies = wave2Enemies;
+                break;
+            case 3:
+                selectedWaveEnemies = wave3Enemies;
+                break;
+            case 4:
+                selectedWaveEnemies = wave4Enemies;
+                break;
+        }
+
+        // Pilih secara acak dari daftar enemy yang ada untuk wave tersebut
+        return selectedWaveEnemies[Random.Range(0, selectedWaveEnemies.Length)];
+    }
     void SpawnBoss()
     {
         Transform bossPoint = spawnPoints[2]; // spawn point khusus boss
