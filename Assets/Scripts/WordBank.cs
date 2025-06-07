@@ -4,15 +4,16 @@ using UnityEngine;
 using Unity.VisualScripting;
 using System.ComponentModel;
 using Unity.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class WordBank : MonoBehaviour
 {
-    [Unity.Collections.ReadOnly] private List<string> wave1Words = new List<string>() { "Stone", "Cave", "Bone", "Flint", "Axe", "Clay", "Hunt", "Fire", "Tribe", "Spear", "Rock", "Tool", "Club", "Hut", "Fur", "Hide", "Clan", "Drum", "Ochre", "Nomad", "Arrow", "Bow", "Pot", "Prey", "Shell" };
-    private List<string> wave2Words = new List<string>() { "Pharaoh", "Ziggurat", "Sumerian", "Papyrus", "Cuneiform", "Trilobite", "Mastodon", "Aqueduct", "Sarcophagus", "Megalith", "Pyramid", "Sphinx", "Mummy", "Chariot", "Parthenon", "Gladiator", "Colosseum", "Acropolis", "Obelisk", "Abacus", "Legion", "Senate", "Toga", "Fossil", "Amber" };
-    private List<string> wave3Words = new List<string>() { "Akkadian", "Mycenaean", "Ostracon", "Neanderthal", "Hieroglyph", "Chthonic", "Amphora", "Urartu", "Olmec", "Hominid", "Babylonian", "Assyrian", "Hittite", "Minoan", "Phoenician", "Etruscan", "Scarab", "Canopic", "Celt", "Druid", "Pict", "Gaul", "Gnostic", "Zoroaster", "Thracian" };
-    private List<string> wave4Words = new List<string>() { "Acheulean", "Mousterian", "Ichthyosaur", "Pterosaur", "Devonian", "Silurian", "Therapsid", "Propliopithecus", "Archaeology", "Glyptodon", "Pleistocene", "Pliocene", "Holocene", "Cambrian", "Permian", "Triassic", "Cretaceous", "Megalodon", "Smilodon", "Iguanodon", "Stegosaurus", "Ankylosaurus", "Triceratops", "Brontosaurus", "Megaloceros" };
+    [SerializeField] private List<string> wave1Words = new List<string>() { "Stone", "Cave", "Bone", "Flint", "Axe", "Clay", "Hunt", "Fire", "Tribe", "Spear", "Rock", "Tool", "Club", "Hut", "Fur", "Hide", "Clan", "Drum", "Ochre", "Nomad", "Arrow", "Bow", "Pot", "Prey", "Shell" };
+    [SerializeField] private List<string> wave2Words = new List<string>() { "Pharaoh", "Ziggurat", "Sumerian", "Papyrus", "Cuneiform", "Trilobite", "Mastodon", "Aqueduct", "Sarcophagus", "Megalith", "Pyramid", "Sphinx", "Mummy", "Chariot", "Parthenon", "Gladiator", "Colosseum", "Acropolis", "Obelisk", "Abacus", "Legion", "Senate", "Toga", "Fossil", "Amber" };
+    [SerializeField] private List<string> wave3Words = new List<string>() { "Akkadian", "Mycenaean", "Ostracon", "Neanderthal", "Hieroglyph", "Chthonic", "Amphora", "Urartu", "Olmec", "Hominid", "Babylonian", "Assyrian", "Hittite", "Minoan", "Phoenician", "Etruscan", "Scarab", "Canopic", "Celt", "Druid", "Pict", "Gaul", "Gnostic", "Zoroaster", "Thracian" };
+    [SerializeField] private List<string> wave4Words = new List<string>() { "Acheulean", "Mousterian", "Ichthyosaur", "Pterosaur", "Devonian", "Silurian", "Therapsid", "Propliopithecus", "Archaeology", "Glyptodon", "Pleistocene", "Pliocene", "Holocene", "Cambrian", "Permian", "Triassic", "Cretaceous", "Megalodon", "Smilodon", "Iguanodon", "Stegosaurus", "Ankylosaurus", "Triceratops", "Brontosaurus", "Megaloceros" };
 
-    private List<string> workingWords = new List<string>();
+    
     private void Awake()
     {
         
