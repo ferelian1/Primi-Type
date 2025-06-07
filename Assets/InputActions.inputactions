@@ -1,0 +1,34 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "08461cb6-2a44-4d53-982d-a1a8b6edd2ca",
+            "actions": [
+                {
+                    "name": "Typing",
+                    "type": "Button",
+                    "id": "3ab8973a-7a3f-49e5-9044-d70f16cef599",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c54525bb-9108-43c2-9b8f-106617f3df7c",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Typing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
