@@ -42,7 +42,7 @@ public class WaveSpawner : MonoBehaviour
 
             isSpawning = true;
 
-            if (currentWave < totalWave+1)
+            if (currentWave < totalWave + 1)
             {
                 int enemyCount = 10 + (currentWave - 1) * 5;
                 for (int i = 0; i < enemyCount; i++)
@@ -51,7 +51,7 @@ public class WaveSpawner : MonoBehaviour
                     yield return new WaitForSeconds(SpawnRatePerSecond);
                 }
             }
-            
+
 
             isSpawning = false;
 
@@ -67,6 +67,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         waveText.text = "YOU WIN!";
+        FindObjectOfType<GameManager>().WinResult();
     }
 
     void SpawnEnemy(int waveLevel)
