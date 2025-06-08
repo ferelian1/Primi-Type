@@ -6,15 +6,16 @@ using TMPro;
 public class Typer : MonoBehaviour
 {
     [SerializeField] private WordBank wordBank;
-    [SerializeField] private TextMeshPro wordOutput = null;
-    
+    private TextMeshPro wordOutput = null;
+    [SerializeField] private AudioManager sound;
+
     private string remainingWord = string.Empty;
     private string currentWord = string.Empty;
 
     private Enemy currentTarget;
     private List<Enemy> activeEnemies = new List<Enemy>();
 
-    
+
     private void Update()
     {
         CheckInput();
@@ -47,11 +48,16 @@ public class Typer : MonoBehaviour
         {
             activeEnemies.Remove(enemy);
         }
+
+        if (enemy.enemyType == Enemy.EnemyType.Boss)
+        {
+            FindObjectOfType<BossSpawner>()?.SetNextBossWordToBoss();
+        }
     }
-    
+
     public void EnterLetter(string typedLetter)
     {
-         if (currentTarget == null)
+        if (currentTarget == null)
         {
             foreach (Enemy enemy in activeEnemies)
             {
@@ -68,6 +74,7 @@ public class Typer : MonoBehaviour
             if (currentTarget.IsCorrectLetter(typedLetter))
             {
                 currentTarget.RemoveLetter();
+                sound.typing();
 
                 if (currentTarget.gameObject == null)
                 {
@@ -95,6 +102,11 @@ public class Typer : MonoBehaviour
     {
         return remainingWord.IndexOf(letter) == 0;
     }
+
+    // private bool IsWrongLetter(string letter)
+    // {
+    //     return 
+    // }
 
     private void RemoveLetter()
     {

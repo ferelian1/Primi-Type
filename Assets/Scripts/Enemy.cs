@@ -4,14 +4,22 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
 using UnityEditor.Rendering;
+using System;
+
 
 public class Enemy : MonoBehaviour
 {
     private const string PLAYER_TAG = "Player";
     [SerializeField] private TextMeshPro wordText;
     [SerializeField] private float speed;
+
+    // [Header("Enemy Type")]
+    public EnemyType enemyType;
+
+    public enum EnemyType { alive, notAlive, Boss }
     private string currentWord = "muffins";
     private string remainingWord;
+
 
     private Transform targetPlayer;
     private NavMeshAgent agent;
@@ -29,18 +37,39 @@ public class Enemy : MonoBehaviour
         {
             targetPlayer = playerObject.transform;
         }
-        
+
         FindObjectOfType<Typer>().RegisterEnemy(this);
     }
 
     private void Update()
     {
-        if (targetPlayer != null && agent != null)
+
+        if (enemyType == EnemyType.notAlive)
         {
-            agent.SetDestination(targetPlayer.position);
+
+            Vector3 targetPos = targetPlayer.position;
+
+
+            targetPos.x = transform.position.x;
+            targetPos.y = transform.position.y;
+
+
+            agent.SetDestination(targetPos);
+        }
+        else if (enemyType == EnemyType.alive || enemyType == EnemyType.Boss)
+        {
+            if (enemyType == EnemyType.Boss)
+            {
+                agent.speed -= 5;
+            }
+            if (targetPlayer != null && agent != null)
+            {
+                agent.SetDestination(targetPlayer.position);
+            }
         }
 
-    
+
+
     }
 
     public void SetWord(string word)
@@ -62,7 +91,7 @@ public class Enemy : MonoBehaviour
             remainingWord = remainingWord.Substring(1);
             UpdateWordText();
 
-            if (remainingWord.Length == 0)
+            if (remainingWord.Length == 0 && enemyType != EnemyType.Boss)
             {
                 Die();
             }
