@@ -6,14 +6,16 @@ using TMPro;
 public class Typer : MonoBehaviour
 {
     [SerializeField] private WordBank wordBank;
-    private TextMeshPro wordOutput = null;
     [SerializeField] private AudioManager sound;
+    private TextMeshPro wordOutput = null;
+
 
     private string remainingWord = string.Empty;
     private string currentWord = string.Empty;
 
-    public Enemy currentTarget; 
+    public Enemy currentTarget;
     private List<Enemy> activeEnemies = new List<Enemy>();
+
 
 
     private void Update()
@@ -76,10 +78,18 @@ public class Typer : MonoBehaviour
                 currentTarget.RemoveLetter();
                 sound.Typing();
 
-                if (currentTarget.gameObject == null)
+                if (currentTarget.IsWordComplete())
                 {
-                    // Enemy destroyed, unregister
-                    UnregisterEnemy(currentTarget);
+                    // Boss tidak dilempar dagger, langsung lanjut kata berikutnya
+                    if (currentTarget.enemyType != Enemy.EnemyType.Boss)
+                    {
+                        FindObjectOfType<PlayerController>().ThrowDagger(currentTarget);
+                    }
+                    else
+                    {
+                        FindObjectOfType<BossSpawner>()?.SetNextBossWordToBoss();
+                    }
+
                     currentTarget = null;
                 }
             }
@@ -114,7 +124,7 @@ public class Typer : MonoBehaviour
         SetRemainingWord(newString);
     }
 
-    private bool IsWordComplete()
+    public bool IsWordComplete()
     {
         return remainingWord.Length == 0;
     }

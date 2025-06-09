@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Dagger : MonoBehaviour
 {
+    [SerializeField] private float daggerSpeed = 30f;
     private Enemy targetEnemy;  // To keep track of the targeted enemy
     private bool isMoving = false;
+
+
 
     void Start()
     {
@@ -13,10 +16,12 @@ public class Dagger : MonoBehaviour
 
     void Update()
     {
+
+        transform.LookAt(targetEnemy.transform.position);
         if (isMoving && targetEnemy != null)
         {
             // Move towards the enemy
-            float step = 10f * Time.deltaTime;  // Adjust speed as needed
+            float step = daggerSpeed * Time.deltaTime;  // Adjust speed as needed
             transform.position = Vector3.MoveTowards(transform.position, targetEnemy.transform.position, step);
 
             // Check if the dagger reaches the enemy

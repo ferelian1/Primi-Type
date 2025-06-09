@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
         audioManager.SetActive(false);
-        pausedAudioManager.SetActive(false);
+        pausedAudioManager.SetActive(true);
         spawner.SetActive(false);
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
             NavMeshAgent navAgent = enemyObject.GetComponent<NavMeshAgent>();
             if (navAgent != null)
             {
-                navAgent.isStopped = false;  // Hentikan pergerakan NavMeshAgent
+                navAgent.isStopped = true;  // Hentikan pergerakan NavMeshAgent
             }
         }
 

@@ -91,10 +91,7 @@ public class Enemy : MonoBehaviour
             remainingWord = remainingWord.Substring(1);
             UpdateWordText();
 
-            if (remainingWord.Length == 0 && enemyType != EnemyType.Boss)
-            {
-                Die();
-            }
+
         }
     }
 
@@ -118,15 +115,19 @@ public class Enemy : MonoBehaviour
                 Die();
             }
         }
-        else
-        {
-            Debug.Log("GAADA");
-        }
+    }
+
+    public bool IsWordComplete()
+    {
+        return remainingWord.Length == 0;
     }
     public void Die()
     {
-        FindObjectOfType<Typer>().UnregisterEnemy(this);
-        //nanti tambah animasi mati tapi bentar
-        Destroy(gameObject);
+        if (enemyType != EnemyType.Boss)
+        {
+            FindObjectOfType<Typer>().UnregisterEnemy(this);
+            //nanti tambah animasi mati tapi bentar
+            Destroy(gameObject);
+        }
     }
 }
