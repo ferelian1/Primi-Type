@@ -15,12 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Sprite emptyHeart;
     [SerializeField] private Image playerHurtUI;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameObject daggerPrefab;  
+    [SerializeField] private GameObject daggerPrefab;
     [SerializeField] private Transform throwPoint; //
 
-    private const string ANIM_THROW = "Throw";
-    private const string ANIM_IDLE = "Idle";
-    private const string ANIM_LOSE = "Lose";
+    private const string ANIM_THROW = "isThrowing";
+    private const string ANIM_LOSE = "isLosing";
 
     private AudioManager playerSound;
     private GameObject currentDagger;
@@ -41,10 +40,11 @@ public class PlayerController : MonoBehaviour
             UpdateHealthUI();  // Update UI based on health
         }
 
-        if (playerHurtUI.color.a != 0)
+        if (playerHurtUI != null)
         {
-            float hurtUIAlpha = playerHurtUI.color.a;
-            hurtUIAlpha -= 0.05f;
+            Color startColor = playerHurtUI.color;
+            startColor.a -= 0.05f;
+            playerHurtUI.color = startColor;
         }
 
     }
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void Death()
     {
-        anim.Play(ANIM_LOSE);
+        anim.SetBool(ANIM_LOSE, true);
         gameManager.LoseResult();
         playerSound.Losing();
     }
@@ -75,30 +75,32 @@ public class PlayerController : MonoBehaviour
     {
         health -= 1;
 
-        float hurtUIAlpha = playerHurtUI.color.a;
-        hurtUIAlpha = 2f;
+        if (playerHurtUI != null)
+        {
+            Color hurtColor = playerHurtUI.color;
+            hurtColor.a = .4f;
+            playerHurtUI.color = hurtColor;
+        }
 
         playerSound.PlayerHurting();
     }
-    
-    private void ThrowDagger()
+
+    public void ThrowDagger(Enemy target)
     {
 
-        anim.Play(ANIM_THROW);
-        if (typer.currentTarget != null)
+        anim.SetBool(ANIM_THROW, true);
+
+        if (daggerPrefab != null && throwPoint != null)
         {
-            // Instantiate the dagger at the player's position
-            currentDagger = Instantiate(daggerPrefab, throwPoint.position, Quaternion.identity);
-
-            // Get the direction towards the enemy
-            Vector3 direction = (typer.currentTarget.transform.position - throwPoint.position).normalized;
-
-            // Set the velocity for the dagger
-            Rigidbody daggerRb = currentDagger.GetComponent<Rigidbody>();
-            if (daggerRb != null)
+            GameObject daggerObj = Instantiate(daggerPrefab, throwPoint.position, Quaternion.identity);
+            Dagger dagger = daggerObj.GetComponent<Dagger>();
+            if (dagger != null)
             {
-                daggerRb.velocity = direction * 10f; // Adjust speed as needed
+                dagger.SetTarget(target);
+                anim.SetBool(ANIM_THROW, false);
             }
         }
     }
+
 }
+
