@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private Typer typer;
     [SerializeField] private GameObject audioManager;
+    [SerializeField] private GameObject pausedAudioManager;
     [SerializeField] private GameObject spawner;
 
     private Enemy[] enemies;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
         audioManager.SetActive(false);
+        pausedAudioManager.SetActive(true);
         spawner.SetActive(false);
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         pauseButton.SetActive(true);
         typer.gameObject.SetActive(true);
         audioManager.SetActive(true);
+        pausedAudioManager.SetActive(false);
         spawner.SetActive(true);
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
@@ -94,6 +97,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LeveledUp()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 
     public void WinResult()
     {
@@ -101,6 +109,7 @@ public class GameManager : MonoBehaviour
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
         audioManager.SetActive(false);
+        pausedAudioManager.SetActive(true);
         spawner.SetActive(false);
     }
     public void LoseResult()
@@ -109,6 +118,22 @@ public class GameManager : MonoBehaviour
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
         audioManager.SetActive(false);
+        pausedAudioManager.SetActive(false);
         spawner.SetActive(false);
+
+        Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+
+        foreach (Enemy enemy in allEnemies)
+        {
+            GameObject enemyObject = enemy.gameObject;
+
+            // Jika menggunakan NavMeshAgent, matikan pergerakan (tetapi tidak menonaktifkan GameObject)
+            NavMeshAgent navAgent = enemyObject.GetComponent<NavMeshAgent>();
+            if (navAgent != null)
+            {
+                navAgent.isStopped = false;  // Hentikan pergerakan NavMeshAgent
+            }
+        }
+
     }
 }

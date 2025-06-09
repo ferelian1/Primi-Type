@@ -10,7 +10,6 @@ using System;
 public class Enemy : MonoBehaviour
 {
     private const string PLAYER_TAG = "Player";
-    private const string PLAYERTRIGGER_TAG = "PlayerTrigger";
     [SerializeField] private TextMeshPro wordText;
     [SerializeField] private float speed;
 
@@ -109,18 +108,22 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(PLAYERTRIGGER_TAG)) 
+        if (other.CompareTag(PLAYER_TAG))
         {
             // Panggil fungsi ReduceHealth pada PlayerController
-            PlayerController player = other.GetComponentInParent<PlayerController>();
+            PlayerController player = other.GetComponent<PlayerController>();
             if (player != null)
             {
                 player.ReduceHealth();
                 Die();
             }
         }
+        else
+        {
+            Debug.Log("GAADA");
+        }
     }
-    private void Die()
+    public void Die()
     {
         FindObjectOfType<Typer>().UnregisterEnemy(this);
         //nanti tambah animasi mati tapi bentar

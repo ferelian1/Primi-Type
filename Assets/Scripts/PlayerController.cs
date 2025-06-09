@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,19 +13,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image[] heartImages; // Array of heart images
     [SerializeField] private Sprite fullHeart;   // Full heart sprite
     [SerializeField] private Sprite emptyHeart;
-
+    [SerializeField] private Image playerHurtUI;
     [SerializeField] private GameManager gameManager;
 
     private const string ANIM_THROW = "Throw";
-    private const string ANIM_IDLE = "Throw";
-    private const string ANIM_LOSE = "Throw";
+    private const string ANIM_IDLE = "Idle";
+    private const string ANIM_LOSE = "Lose";
 
-    private void Awake()
+    private AudioManager playerSound;
+    private void Start()
     {
-        
+        playerSound = FindObjectOfType<AudioManager>();
     }
     private void Update()
     {
+        
         if (health == 0)
         {
             Death();
@@ -35,9 +38,14 @@ public class PlayerController : MonoBehaviour
             UpdateHealthUI();  // Update UI based on health
         }
 
+        if (playerHurtUI.color.a != 0)
+        {
+            float hurtUIAlpha = playerHurtUI.color.a;
+            hurtUIAlpha -= 0.05f;
+        }
 
     }
-
+    
     private void UpdateHealthUI()
     {
         // Loop through all heart images
@@ -58,9 +66,15 @@ public class PlayerController : MonoBehaviour
     {
         anim.Play(ANIM_LOSE);
         gameManager.LoseResult();
+        playerSound.Losing();
     }
     public void ReduceHealth()
     {
         health -= 1;
+
+        float hurtUIAlpha = playerHurtUI.color.a;
+        hurtUIAlpha = 2f;
+
+        playerSound.PlayerHurting();
     }
 }
