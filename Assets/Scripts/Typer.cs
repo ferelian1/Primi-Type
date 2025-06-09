@@ -12,7 +12,7 @@ public class Typer : MonoBehaviour
     private string remainingWord = string.Empty;
     private string currentWord = string.Empty;
 
-    private Enemy currentTarget;
+    public Enemy currentTarget; 
     private List<Enemy> activeEnemies = new List<Enemy>();
 
 
