@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     }
     public void Quited()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void LeveledUp()
