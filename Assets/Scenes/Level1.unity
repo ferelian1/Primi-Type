@@ -3086,7 +3086,7 @@ MonoBehaviour:
   loseGroup: {fileID: 1536802869}
   pauseButton: {fileID: 45035729}
   typer: {fileID: 1483356899}
-  audioManager: {fileID: 1770725861}
+  audioGroup: {fileID: 1770725861}
   pausedAudioManager: {fileID: 1099839864}
   spawner: {fileID: 1026063984}
 --- !u!4 &855989513
@@ -5820,7 +5820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1770725862}
   m_Layer: 0
-  m_Name: AudioManagerGroup
+  m_Name: AudioGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
