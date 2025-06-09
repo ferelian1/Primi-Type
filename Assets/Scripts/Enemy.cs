@@ -13,14 +13,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private TextMeshPro wordText;
     [SerializeField] private float speed;
 
-    // [Header("Enemy Type")]
+
+    [Header("Enemy Type")]
+    private Animator anim;
     public EnemyType enemyType;
 
     public enum EnemyType { alive, notAlive, Boss }
     private string currentWord = string.Empty;
     private string remainingWord = string.Empty;
 
-
+    private const string IS_DEATHTRIGGER = "isDeathTrigger";
     private Transform targetPlayer;
     private NavMeshAgent agent;
 
@@ -39,6 +41,16 @@ public class Enemy : MonoBehaviour
         }
 
         FindObjectOfType<Typer>().RegisterEnemy(this);
+
+
+        if (enemyType == EnemyType.alive || enemyType == EnemyType.Boss)
+        {
+            anim = GetComponentInChildren<Animator>();
+        }
+        else
+        {
+
+        }
     }
 
     private void Update()
@@ -64,7 +76,15 @@ public class Enemy : MonoBehaviour
             }
             if (targetPlayer != null && agent != null)
             {
-                agent.SetDestination(targetPlayer.position);
+                //agent.SetDestination(targetPlayer.position);
+                Vector3 targetPos = targetPlayer.position;
+
+
+                targetPos.x = transform.position.x;
+                targetPos.y = transform.position.y;
+
+
+                agent.SetDestination(targetPos);
             }
         }
 
@@ -129,5 +149,24 @@ public class Enemy : MonoBehaviour
             //nanti tambah animasi mati tapi bentar
             Destroy(gameObject);
         }
+    }
+
+    public void Death()
+    {
+        if (enemyType != EnemyType.Boss && enemyType == EnemyType.alive)
+        {
+            FindObjectOfType<Typer>().UnregisterEnemy(this);
+            StartCoroutine(WaitBeforeDeath());
+
+        }
+    }
+
+    private IEnumerator WaitBeforeDeath()
+    {
+        anim.SetBool(IS_DEATHTRIGGER, true);
+        agent.isStopped = true;
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+
     }
 }

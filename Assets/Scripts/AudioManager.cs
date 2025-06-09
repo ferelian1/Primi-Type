@@ -28,6 +28,14 @@ public class AudioManager : MonoBehaviour
     }
     public void Losing()
     {
+        if (!loseMusic.isPlaying)  // Pastikan hanya diputar jika belum ada musik yang sedang diputar
+    {
+        Debug.Log("WOI IDUP");
         loseMusic.Play();
+    }
+    else
+    {
+        Debug.Log("Musik sudah diputar.");
+    }
     }
 }

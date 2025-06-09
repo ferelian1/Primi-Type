@@ -28,8 +28,14 @@ public class Dagger : MonoBehaviour
             if (transform.position == targetEnemy.transform.position)
             {
                 // Destroy the enemy
-                targetEnemy.Die();
 
+
+                if (targetEnemy.enemyType == Enemy.EnemyType.alive)
+                {
+                    targetEnemy.Death();
+                } else if (targetEnemy.enemyType == Enemy.EnemyType.notAlive) {
+                    targetEnemy.Die();
+                }
                 // Destroy the dagger
                 Destroy(gameObject);
             }

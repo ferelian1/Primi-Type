@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private AudioManager playerSound;
     private GameObject currentDagger;
+    private bool isDeath = false;
     private readonly Quaternion DEFAULT_ROTATION = Quaternion.Euler(0, 0, 0); // arah depan
 
     private void Start()
@@ -32,11 +33,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-        if (health == 0)
+        if (!isDeath && health == 0)
         {
+            isDeath = true;
             Death();
-
         }
+        
         else
         {
             UpdateHealthUI();  // Update UI based on health
@@ -71,7 +73,6 @@ public class PlayerController : MonoBehaviour
     {
         anim.SetBool(ANIM_LOSE, true);
         gameManager.LoseResult();
-        playerSound.Losing();
     }
     public void ReduceHealth()
     {
