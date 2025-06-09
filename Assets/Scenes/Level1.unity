@@ -2686,7 +2686,7 @@ PrefabInstance:
     - target: {fileID: 4649502510160790384, guid: 98e9d34c813a7e7429a1e44ff8a05278,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Resumed
+      value: Paused
       objectReference: {fileID: 0}
     - target: {fileID: 4649502510160790384, guid: 98e9d34c813a7e7429a1e44ff8a05278,
         type: 3}
