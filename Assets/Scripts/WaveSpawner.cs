@@ -68,6 +68,7 @@ public class WaveSpawner : MonoBehaviour
 
         waveText.text = "YOU WIN!";
         FindObjectOfType<GameManager>().WinResult();
+        FindObjectOfType<AudioManager>().Winning();
     }
 
     void SpawnEnemy(int waveLevel)

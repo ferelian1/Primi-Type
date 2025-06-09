@@ -74,7 +74,7 @@ public class Typer : MonoBehaviour
             if (currentTarget.IsCorrectLetter(typedLetter))
             {
                 currentTarget.RemoveLetter();
-                sound.typing();
+                sound.Typing();
 
                 if (currentTarget.gameObject == null)
                 {
