@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject loseGroup;
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private Typer typer;
-    [SerializeField] private GameObject audioManager;
+    [SerializeField] private GameObject audioGroup;
     [SerializeField] private GameObject pausedAudioManager;
     [SerializeField] private GameObject spawner;
+
+    private AudioManager audios;
 
     private Enemy[] enemies;
     private bool isPaused;
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         typer = FindObjectOfType<Typer>();
-
+        audios = FindObjectOfType<AudioManager>();
 
     }
 
@@ -42,7 +44,7 @@ public class GameManager : MonoBehaviour
         pauseGroup.SetActive(true);
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
-        audioManager.SetActive(false);
+        audioGroup.SetActive(false);
         pausedAudioManager.SetActive(true);
         spawner.SetActive(false);
 
@@ -67,10 +69,9 @@ public class GameManager : MonoBehaviour
         pauseGroup.SetActive(false);
         pauseButton.SetActive(true);
         typer.gameObject.SetActive(true);
-        audioManager.SetActive(true);
+        audioGroup.SetActive(true);
         pausedAudioManager.SetActive(false);
         spawner.SetActive(true);
-
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
 
         foreach (Enemy enemy in allEnemies)
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
             NavMeshAgent navAgent = enemyObject.GetComponent<NavMeshAgent>();
             if (navAgent != null)
             {
-                navAgent.isStopped = false;  // Hentikan pergerakan NavMeshAgent
+                navAgent.isStopped = false;  // Hentikan semua pergerakan NavMeshAgent
             }
         }
 
@@ -108,18 +109,20 @@ public class GameManager : MonoBehaviour
         winGroup.SetActive(true);
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
-        audioManager.SetActive(false);
-        pausedAudioManager.SetActive(true);
+        audioGroup.SetActive(false);
         spawner.SetActive(false);
+
+        audios.Winning();
     }
     public void LoseResult()
     {
         loseGroup.SetActive(true);
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
-        audioManager.SetActive(false);
-        pausedAudioManager.SetActive(true);
+        audioGroup.SetActive(false);
         spawner.SetActive(false);
+
+        audios.Losing();
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
 
@@ -131,7 +134,7 @@ public class GameManager : MonoBehaviour
             NavMeshAgent navAgent = enemyObject.GetComponent<NavMeshAgent>();
             if (navAgent != null)
             {
-                navAgent.isStopped = true;  // Hentikan pergerakan NavMeshAgent
+                navAgent.isStopped = true;  // Hentikan semua pergerakan NavMeshAgent
             }
         }
 
