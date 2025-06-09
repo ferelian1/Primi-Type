@@ -703,12 +703,6 @@ MonoBehaviour:
   m_AmplitudeGain: 0.1
   m_FrequencyGain: 0.2
   mNoiseOffsets: {x: -282.4684, y: 284.05615, z: -947.181}
---- !u!4 &140009973 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6473808874072762166, guid: f92e3068ea80bd94ba86ec1ee29fb023,
-    type: 3}
-  m_PrefabInstance: {fileID: 5809193740682819277}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &148385366 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8118188160644242681, guid: a7b2462c750121241a7b9f6a911170ab,
@@ -6429,12 +6423,12 @@ Transform:
   m_GameObject: {fileID: 1983040403}
   serializedVersion: 2
   m_LocalRotation: {x: 0.28404015, y: -0, z: -0, w: 0.9588124}
-  m_LocalPosition: {x: -0.37, y: 13, z: -9}
+  m_LocalPosition: {x: -0.37, y: 14.5, z: -11.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 109036228}
-  m_Father: {fileID: 140009973}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 33.003, y: 0, z: 0}
 --- !u!114 &1983040405
 MonoBehaviour:
@@ -7285,10 +7279,6 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2303763229984384806, guid: f92e3068ea80bd94ba86ec1ee29fb023, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6473808874072762166, guid: f92e3068ea80bd94ba86ec1ee29fb023,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1983040404}
     - targetCorrespondingSourceObject: {fileID: 1932688628418776596, guid: f92e3068ea80bd94ba86ec1ee29fb023,
         type: 3}
       insertIndex: -1
@@ -7443,6 +7433,7 @@ SceneRoots:
   - {fileID: 4751600074578039401}
   - {fileID: 33042338339567680}
   - {fileID: 5809193740682819277}
+  - {fileID: 1983040404}
   - {fileID: 4474076801742121286}
   - {fileID: 1185249337}
   - {fileID: 2016045974}

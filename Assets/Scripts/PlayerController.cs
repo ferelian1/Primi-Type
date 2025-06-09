@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool(ANIM_THROW, true);
 
         StartCoroutine(ResetThrowAnim());
-        
         FaceEnemy(target.transform.position);
 
 
