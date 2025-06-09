@@ -15,19 +15,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Sprite emptyHeart;
     [SerializeField] private Image playerHurtUI;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject daggerPrefab;  
+    [SerializeField] private Transform throwPoint; //
 
     private const string ANIM_THROW = "Throw";
     private const string ANIM_IDLE = "Idle";
     private const string ANIM_LOSE = "Lose";
 
     private AudioManager playerSound;
+    private GameObject currentDagger;
     private void Start()
     {
         playerSound = FindObjectOfType<AudioManager>();
     }
     private void Update()
     {
-        
+
         if (health == 0)
         {
             Death();
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    
+
     private void UpdateHealthUI()
     {
         // Loop through all heart images
@@ -76,5 +79,26 @@ public class PlayerController : MonoBehaviour
         hurtUIAlpha = 2f;
 
         playerSound.PlayerHurting();
+    }
+    
+    private void ThrowDagger()
+    {
+
+        anim.Play(ANIM_THROW);
+        if (typer.currentTarget != null)
+        {
+            // Instantiate the dagger at the player's position
+            currentDagger = Instantiate(daggerPrefab, throwPoint.position, Quaternion.identity);
+
+            // Get the direction towards the enemy
+            Vector3 direction = (typer.currentTarget.transform.position - throwPoint.position).normalized;
+
+            // Set the velocity for the dagger
+            Rigidbody daggerRb = currentDagger.GetComponent<Rigidbody>();
+            if (daggerRb != null)
+            {
+                daggerRb.velocity = direction * 10f; // Adjust speed as needed
+            }
+        }
     }
 }
