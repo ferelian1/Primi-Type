@@ -89,10 +89,10 @@ public class PlayerController : MonoBehaviour
 
     public void ThrowDagger(Enemy target)
     {
-        
+
         anim.SetBool(ANIM_THROW, true);
         StartCoroutine(ResetThrowAnim());
-
+        
         FaceEnemy(target.transform.position);
 
         if (daggerPrefab != null && throwPoint != null)
