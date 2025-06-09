@@ -165,7 +165,7 @@ public class Enemy : MonoBehaviour
     {
         anim.SetBool(IS_DEATHTRIGGER, true);
         agent.isStopped = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.8f);
         Destroy(gameObject);
 
     }
