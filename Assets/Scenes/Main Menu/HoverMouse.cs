@@ -33,7 +33,6 @@ public class HoverMouse : MonoBehaviour,
         );
     }
 
-    // pointer hover
     public void OnPointerEnter(PointerEventData eventData)
     {
         isPointerOver = true;
@@ -46,7 +45,6 @@ public class HoverMouse : MonoBehaviour,
         targetScale = normalScale;
     }
 
-    // pointer click (mouse down)
     public void OnPointerDown(PointerEventData eventData)
     {
         targetScale = clickScale;

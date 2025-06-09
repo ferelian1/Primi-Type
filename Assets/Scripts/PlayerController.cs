@@ -129,12 +129,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
-                anim.SetBool(ANIM_THROW, false);
-            }
-        }
-    }
-
 }
 

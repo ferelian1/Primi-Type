@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.Playables;  // ← untuk Timeline/PlayableDirector
 
 public class MainMenuStructure : MonoBehaviour
 {
@@ -13,16 +13,18 @@ public class MainMenuStructure : MonoBehaviour
     public GameObject creditPanel;
     public GameObject leaderboardPanel;
 
+    [Header("Timeline Animation")]
+    public PlayableDirector mainToSetting;  // diputar saat ShowSettingPanel
+    public PlayableDirector settingToMain;  // diputar saat ShowMainMenuPanel
+
     void Start()
     {
         ShowMainMenuPanel();
     }
 
-
     private void HideAllPanels()
     {
         mainMenuPanel.SetActive(false);
-        settingPanel.SetActive(false);
         achievementPanel.SetActive(false);
         creditPanel.SetActive(false);
         leaderboardPanel.SetActive(false);
@@ -34,13 +36,21 @@ public class MainMenuStructure : MonoBehaviour
         mainMenuPanel.SetActive(true);
     }
 
+     public void BackMainMenuPanel()
+    {
+        if (settingToMain != null)
+            settingToMain.Play();
+    }
 
     public void ShowSettingPanel()
     {
         HideAllPanels();
         settingPanel.SetActive(true);
-    }
 
+        // Putar Timeline dari Main ke Setting
+        if (mainToSetting != null)
+            mainToSetting.Play();
+    }
 
     public void ShowAchievementPanel()
     {
@@ -48,19 +58,17 @@ public class MainMenuStructure : MonoBehaviour
         achievementPanel.SetActive(true);
     }
 
-
     public void ShowCreditPanel()
     {
         HideAllPanels();
         creditPanel.SetActive(true);
     }
 
-    public void LeaderboardPanel()
+    public void ShowLeaderboardPanel()
     {
         HideAllPanels();
         leaderboardPanel.SetActive(true);
     }
-
 
     public void PlayGame()
     {
