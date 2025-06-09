@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private AudioManager playerSound;
     private GameObject currentDagger;
+    private readonly Quaternion DEFAULT_ROTATION = Quaternion.Euler(0, 0, 0); // arah depan
+
     private void Start()
     {
         playerSound = FindObjectOfType<AudioManager>();
@@ -90,6 +92,11 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool(ANIM_THROW, true);
 
+        StartCoroutine(ResetThrowAnim());
+        
+        FaceEnemy(target.transform.position);
+
+
         if (daggerPrefab != null && throwPoint != null)
         {
             GameObject daggerObj = Instantiate(daggerPrefab, throwPoint.position, Quaternion.identity);
@@ -97,6 +104,33 @@ public class PlayerController : MonoBehaviour
             if (dagger != null)
             {
                 dagger.SetTarget(target);
+
+
+            }
+        }
+    }
+
+    private IEnumerator ResetThrowAnim()
+    {
+        yield return new WaitForSeconds(0.5f); // sesuaikan durasi animasi lempar kamu
+        anim.SetBool(ANIM_THROW, false);
+        transform.rotation = DEFAULT_ROTATION;
+    }
+
+    private void FaceEnemy(Vector3 enemyPosition)
+    {
+        Vector3 direction = (enemyPosition - transform.position).normalized;
+        direction.y = 0f; // supaya tidak condong ke atas/bawah
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = lookRotation;
+        }
+    }
+
+
+
                 anim.SetBool(ANIM_THROW, false);
             }
         }
