@@ -24,18 +24,24 @@ public class AudioManager : MonoBehaviour
     }
     public void Winning()
     {
-        winMusic.Play();
+        if (!winMusic.isPlaying)  // Pastikan hanya diputar jika belum ada musik yang sedang diputar
+        {
+            winMusic.Play();
+        }
+        else
+        {
+            Debug.Log("Musik WIN sudah diputar.");
+        }
     }
     public void Losing()
     {
         if (!loseMusic.isPlaying)  // Pastikan hanya diputar jika belum ada musik yang sedang diputar
-    {
-        Debug.Log("WOI IDUP");
-        loseMusic.Play();
-    }
-    else
-    {
-        Debug.Log("Musik sudah diputar.");
-    }
+        {
+            loseMusic.Play();
+        }
+        else
+        {
+            Debug.Log("Musik LOSE sudah diputar.");
+        }
     }
 }
