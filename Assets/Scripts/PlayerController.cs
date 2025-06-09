@@ -91,9 +91,11 @@ public class PlayerController : MonoBehaviour
     {
 
         anim.SetBool(ANIM_THROW, true);
+
         StartCoroutine(ResetThrowAnim());
         
         FaceEnemy(target.transform.position);
+
 
         if (daggerPrefab != null && throwPoint != null)
         {
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
             if (dagger != null)
             {
                 dagger.SetTarget(target);
+
 
             }
         }
@@ -127,6 +130,11 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+                anim.SetBool(ANIM_THROW, false);
+            }
+        }
+    }
 
 }
 
