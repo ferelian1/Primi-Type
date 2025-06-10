@@ -5160,7 +5160,7 @@ MonoBehaviour:
   pauseButton: {fileID: 1099293676}
   typer: {fileID: 1483356899}
   audioGroup: {fileID: 598191906}
-  pausedAudioManager: {fileID: 2145710265}
+  pausedAudioGroup: {fileID: 2145710265}
   spawner: {fileID: 1026063984}
 --- !u!4 &855989513
 Transform:

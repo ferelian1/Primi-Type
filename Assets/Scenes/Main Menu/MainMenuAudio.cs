@@ -23,7 +23,7 @@ public class MainMenuAudio : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            
 
             // Load saved values (jika ada), default 1
             masterVolume = PlayerPrefs.GetFloat("masterVolume", 1f);
