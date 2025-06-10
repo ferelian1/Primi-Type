@@ -66,8 +66,6 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
 
-        waveText.text = "YOU WIN!";
-        yield return new WaitForSeconds(2f);
         FindObjectOfType<GameManager>().WinResult();
         FindObjectOfType<AudioManager>().Winning();
     }

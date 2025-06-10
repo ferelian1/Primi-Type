@@ -26,7 +26,8 @@ public class HoverMouse : MonoBehaviour,
 
     void Update()
     {
-        rectTransform.localScale = Vector3.Lerp(
+        rectTransform.localScale = Vector3.Lerp
+        (
             rectTransform.localScale,
             targetScale,
             Time.deltaTime * lerpSpeed
