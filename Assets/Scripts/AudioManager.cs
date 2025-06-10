@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security;
-using UnityEditor.Search;
+using UnityEditor;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -44,4 +44,5 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Musik LOSE sudah diputar.");
         }
     }
+
 }

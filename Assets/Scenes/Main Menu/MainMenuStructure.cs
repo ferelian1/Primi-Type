@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Playables;  // ← untuk Timeline/PlayableDirector
+using UnityEngine.Playables;
 
 public class MainMenuStructure : MonoBehaviour
 {
@@ -12,10 +12,13 @@ public class MainMenuStructure : MonoBehaviour
     public GameObject achievementPanel;
     public GameObject creditPanel;
     public GameObject leaderboardPanel;
+    public GameObject loadingPanel;
+    public PlayableDirector loadingTimeline;
+    public GameObject Musicaudio;
 
     [Header("Timeline Animation")]
-    public PlayableDirector mainToSetting;  // diputar saat ShowSettingPanel
-    public PlayableDirector settingToMain;  // diputar saat ShowMainMenuPanel
+    public PlayableDirector mainToSetting;
+    public PlayableDirector settingToMain;
 
     void Start()
     {
@@ -47,7 +50,6 @@ public class MainMenuStructure : MonoBehaviour
         HideAllPanels();
         settingPanel.SetActive(true);
 
-        // Putar Timeline dari Main ke Setting
         if (mainToSetting != null)
             mainToSetting.Play();
     }
@@ -70,9 +72,32 @@ public class MainMenuStructure : MonoBehaviour
         leaderboardPanel.SetActive(true);
     }
 
-    public void PlayGame()
+ public void PlayGame()
     {
-        SceneManager.LoadScene("Level1");
+        StartCoroutine(LoadGameAsync("Level1"));
+    }
+
+    private IEnumerator LoadGameAsync(string sceneName)
+    {
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
+
+        if (loadingTimeline != null)
+            loadingTimeline.Play();
+
+        AsyncOperation asyncOp = SceneManager.LoadSceneAsync(sceneName);
+        asyncOp.allowSceneActivation = false;
+
+        while (asyncOp.progress < 0.9f)
+            yield return null;
+
+        if (loadingTimeline != null)
+            loadingTimeline.Stop();
+            Musicaudio.SetActive(false);
+
+        yield return null;
+
+        asyncOp.allowSceneActivation = true;
     }
 
     public void ExitGame()
