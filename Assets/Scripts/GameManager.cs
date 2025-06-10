@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private Typer typer;
     [SerializeField] private GameObject audioGroup;
-    [SerializeField] private GameObject pausedAudioManager;
+    [SerializeField] private GameObject pausedAudioGroup;
     [SerializeField] private GameObject spawner;
 
     private AudioManager audios;
@@ -29,19 +29,21 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-    if (Input.GetKeyDown(KeyCode.Escape))
-    {
-        if (!isPaused)
-            Paused();
-        else
-            Resumed();
-    }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+                Paused();
+            else
+                Resumed();
+        }
     }
 
     public void Paused()
     {
         pauseGroup.SetActive(true);
         pauseButton.SetActive(false);
+        audioGroup.SetActive(false);
+        pausedAudioGroup.SetActive(true);
         typer.gameObject.SetActive(false);
         spawner.SetActive(false);
 
@@ -66,6 +68,8 @@ public class GameManager : MonoBehaviour
         pauseGroup.SetActive(false);
         pauseButton.SetActive(true);
         typer.gameObject.SetActive(true);
+        audioGroup.SetActive(true);
+        pausedAudioGroup.SetActive(false);
         spawner.SetActive(true);
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
 
@@ -90,11 +94,8 @@ public class GameManager : MonoBehaviour
     }
     public void Quited()
     {
-        if (isPaused)
-        {
-            Resumed();
-            SceneManager.LoadScene("Main Menu");
-    }
+
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void LeveledUp()

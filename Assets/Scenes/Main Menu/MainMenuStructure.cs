@@ -14,7 +14,7 @@ public class MainMenuStructure : MonoBehaviour
     public GameObject leaderboardPanel;
     public GameObject loadingPanel;
     public PlayableDirector loadingTimeline;
-    public GameObject Musicaudio;
+    public AudioSource Musicaudio;
 
     [Header("Timeline Animation")]
     public PlayableDirector mainToSetting;
@@ -39,10 +39,16 @@ public class MainMenuStructure : MonoBehaviour
         mainMenuPanel.SetActive(true);
     }
 
-     public void BackMainMenuPanel()
+    public void BackMainMenuPanel()
     {
         if (settingToMain != null)
             settingToMain.Play();
+
+        // Pastikan Musicaudio dihidupkan lagi ketika kembali ke menu
+        if (Musicaudio != null)
+        {
+            Musicaudio.Play();  // Mengaktifkan objek audio
+        }
     }
 
     public void ShowSettingPanel()
@@ -72,7 +78,7 @@ public class MainMenuStructure : MonoBehaviour
         leaderboardPanel.SetActive(true);
     }
 
- public void PlayGame()
+    public void PlayGame()
     {
         StartCoroutine(LoadGameAsync("Level1"));
     }
@@ -93,12 +99,14 @@ public class MainMenuStructure : MonoBehaviour
 
         if (loadingTimeline != null)
             loadingTimeline.Stop();
-            Musicaudio.SetActive(false);
+        Musicaudio.Stop();
 
         yield return null;
 
         asyncOp.allowSceneActivation = true;
     }
+
+
 
     public void ExitGame()
     {

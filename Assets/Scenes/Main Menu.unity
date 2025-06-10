@@ -3134,7 +3134,7 @@ GameObject:
   - component: {fileID: 707594564}
   m_Layer: 0
   m_Name: Music
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7649,7 +7649,7 @@ MonoBehaviour:
   leaderboardPanel: {fileID: 339291839}
   loadingPanel: {fileID: 1206552644}
   loadingTimeline: {fileID: 1596937925}
-  Musicaudio: {fileID: 707594563}
+  Musicaudio: {fileID: 707594564}
   mainToSetting: {fileID: 771158945}
   settingToMain: {fileID: 2034863369}
 --- !u!1 &1533755524

@@ -3835,7 +3835,7 @@ MonoBehaviour:
   pauseButton: {fileID: 45035729}
   typer: {fileID: 1483356899}
   audioGroup: {fileID: 1770725861}
-  pausedAudioManager: {fileID: 1099839864}
+  pausedAudioGroup: {fileID: 1099839864}
   spawner: {fileID: 1026063984}
 --- !u!4 &855989513
 Transform:
@@ -4067,6 +4067,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2108441894}
   - {fileID: 190385402}
   - {fileID: 741560051}
   - {fileID: 45035733}
@@ -4074,7 +4075,6 @@ RectTransform:
   - {fileID: 709758357}
   - {fileID: 1536802870}
   - {fileID: 14009179}
-  - {fileID: 2108441894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5771,6 +5771,16 @@ PrefabInstance:
         type: 3}
       propertyPath: clickScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532693966885960028, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532693966885960028, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
         type: 3}
@@ -7902,6 +7912,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoseGroup
       objectReference: {fileID: 0}
+    - target: {fileID: 4188312948142095023, guid: c125bf9ac138dff439e1724459dba71b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7086833719396451661, guid: c125bf9ac138dff439e1724459dba71b,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7927,6 +7942,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 855989512}
+    - target: {fileID: 9024266725636120742, guid: c125bf9ac138dff439e1724459dba71b,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024266725636120742, guid: c125bf9ac138dff439e1724459dba71b,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8857,6 +8882,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4114681943792058686, guid: e70b315f0d956034584533aeb0178334,
+        type: 3}
+      propertyPath: m_Name
+      value: PausedAudioGroup-----------------------
+      objectReference: {fileID: 0}
     - target: {fileID: 8281130105069165716, guid: e70b315f0d956034584533aeb0178334,
         type: 3}
       propertyPath: m_Name
