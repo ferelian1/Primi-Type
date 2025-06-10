@@ -7305,6 +7305,46 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2186309271495803545, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: clickScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 855989512}
+    - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quited
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4350004076414435765, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4505922279732273282, guid: 2ce419b12344368439d3d82033c390f8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -7340,6 +7380,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6192974556137734113, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: clickScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6730504288355095513, guid: 2ce419b12344368439d3d82033c390f8,
         type: 3}
       propertyPath: m_Name
@@ -7349,6 +7394,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7824895268727813598, guid: 2ce419b12344368439d3d82033c390f8,
+        type: 3}
+      propertyPath: clickScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9088600713920149254, guid: 2ce419b12344368439d3d82033c390f8,
         type: 3}
@@ -8938,6 +8988,12 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3116435608063197483, guid: f92e3068ea80bd94ba86ec1ee29fb023,
     type: 3}
   m_PrefabInstance: {fileID: 5809193740682819277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1857841616 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2485402110810104227, guid: e70b315f0d956034584533aeb0178334,
+    type: 3}
+  m_PrefabInstance: {fileID: 611483705}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1864405532
 GameObject:
@@ -10562,6 +10618,11 @@ PrefabInstance:
       propertyPath: typer
       value: 
       objectReference: {fileID: 1483356899}
+    - target: {fileID: 7719274900287034517, guid: f92e3068ea80bd94ba86ec1ee29fb023,
+        type: 3}
+      propertyPath: success
+      value: 
+      objectReference: {fileID: 1857841616}
     - target: {fileID: 7719274900287034517, guid: f92e3068ea80bd94ba86ec1ee29fb023,
         type: 3}
       propertyPath: fullHeart

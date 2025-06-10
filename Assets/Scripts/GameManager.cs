@@ -29,14 +29,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
+    if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        if (!isPaused)
             Paused();
-        }
-        else if (isPaused == true && Input.GetKeyDown(KeyCode.Escape))
-        {
+        else
             Resumed();
-        }
+    }
     }
 
     public void Paused()
@@ -44,8 +43,6 @@ public class GameManager : MonoBehaviour
         pauseGroup.SetActive(true);
         pauseButton.SetActive(false);
         typer.gameObject.SetActive(false);
-        audioGroup.SetActive(false);
-        pausedAudioManager.SetActive(true);
         spawner.SetActive(false);
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
@@ -69,8 +66,6 @@ public class GameManager : MonoBehaviour
         pauseGroup.SetActive(false);
         pauseButton.SetActive(true);
         typer.gameObject.SetActive(true);
-        audioGroup.SetActive(true);
-        pausedAudioManager.SetActive(false);
         spawner.SetActive(true);
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
 
@@ -95,7 +90,11 @@ public class GameManager : MonoBehaviour
     }
     public void Quited()
     {
-        SceneManager.LoadScene("Main Menu");
+        if (isPaused)
+        {
+            Resumed();
+            SceneManager.LoadScene("Main Menu");
+    }
     }
 
     public void LeveledUp()

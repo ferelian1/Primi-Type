@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.Build.Content;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject daggerPrefab;
     [SerializeField] private Transform throwPoint; //
+    [SerializeField] private AudioSource success; //
 
     private const string ANIM_THROW = "isThrowing";
     private const string ANIM_LOSE = "isLosing";
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
             if (dagger != null)
             {
                 dagger.SetTarget(target);
-
+                success.Play();
 
             }
         }
