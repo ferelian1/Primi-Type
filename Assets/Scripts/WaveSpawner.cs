@@ -5,8 +5,7 @@ using TMPro;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
 
-public class WaveSpawner : MonoBehaviour
-{
+public class WaveSpawner : MonoBehaviour {
     [SerializeField] public Transform[] spawnPoints; // 0 dan 1 = enemy biasa, 2 = boss
     [SerializeField] private GameObject[] enemyType; // List untuk wave 1
     [SerializeField] private WordBank wordBank;
@@ -20,33 +19,28 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private float SpawnRatePerSecond = 2.5f;
     [Tooltip("MAU ADA BERAPA WAVENYA")]
     [SerializeField] private int totalWave;
-    
+
 
     private int currentWave = 1;
     private bool isSpawning = false;
 
-    void Start()
-    {
+    void Start() {
         StartCoroutine(StartNextWave());
         navmesh.BuildNavMesh();
     }
 
-    IEnumerator StartNextWave()
-    {
+    IEnumerator StartNextWave() {
         yield return new WaitForSeconds(2f);
-        while (currentWave <= totalWave)
-        {
+        while (currentWave <= totalWave) {
             waveText.text = $"Wave {currentWave}";
             yield return new WaitForSeconds(2f);
             waveText.text = "";
 
             isSpawning = true;
 
-            if (currentWave < totalWave + 1)
-            {
+            if (currentWave < totalWave + 1) {
                 int enemyCount = 10 + (currentWave - 1) * 5;
-                for (int i = 0; i < enemyCount; i++)
-                {
+                for (int i = 0; i < enemyCount; i++) {
                     SpawnEnemy(currentWave);
                     yield return new WaitForSeconds(SpawnRatePerSecond);
                 }
@@ -56,8 +50,7 @@ public class WaveSpawner : MonoBehaviour
             isSpawning = false;
 
             // Tunggu semua enemy mati
-            while (GameObject.FindObjectsOfType<Enemy>().Length > 0)
-            {
+            while (GameObject.FindObjectsOfType<Enemy>().Length > 0) {
                 yield return null;
             }
 
@@ -70,10 +63,9 @@ public class WaveSpawner : MonoBehaviour
         FindObjectOfType<AudioManager>().Winning();
     }
 
-    void SpawnEnemy(int waveLevel)
-    {
+    void SpawnEnemy(int waveLevel) {
         GameObject enemySpawn = enemyType[Random.Range(0, enemyType.Length)];
-        int spawnIndex = Random.Range(0, spawnPoints.Length); 
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
         GameObject prefab = enemySpawn;
         Transform spawnPoint = spawnPoints[spawnIndex];
 
@@ -86,6 +78,6 @@ public class WaveSpawner : MonoBehaviour
     }
 
 
-    
-    
+
+
 }

@@ -255,25 +255,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14009178}
   m_CullTransparentMesh: 1
---- !u!1 &23852990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 538107058009098572, guid: f653935deb45444418e81e9f17e59451,
-    type: 3}
-  m_PrefabInstance: {fileID: 33042338339567680}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &23852992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23852990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46688493810376048a33de1b3005c254, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levels: []
 --- !u!4 &52897706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4935727474564001705, guid: bc1dfd7d9c832ce4d99f9350ebddca96,
@@ -8318,12 +8299,20 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 538107058009098572, guid: f653935deb45444418e81e9f17e59451,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 23852992}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f653935deb45444418e81e9f17e59451, type: 3}
+--- !u!114 &33042338339567681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4438201679775477654, guid: f653935deb45444418e81e9f17e59451,
+    type: 3}
+  m_PrefabInstance: {fileID: 33042338339567680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46688493810376048a33de1b3005c254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4474076801742121286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8351,7 +8340,7 @@ PrefabInstance:
     - target: {fileID: 5490223661735921, guid: d180c0ffe25dc4c4faa5d93d221beb32, type: 3}
       propertyPath: wordBank
       value: 
-      objectReference: {fileID: 23852992}
+      objectReference: {fileID: 33042338339567681}
     - target: {fileID: 5490223661735921, guid: d180c0ffe25dc4c4faa5d93d221beb32, type: 3}
       propertyPath: totalWave
       value: 3
@@ -8539,7 +8528,7 @@ PrefabInstance:
         type: 3}
       propertyPath: wordBank
       value: 
-      objectReference: {fileID: 23852992}
+      objectReference: {fileID: 0}
     - target: {fileID: 7383445454620517014, guid: 1cb127e1b7a7eeb47b3a56098ebf9480,
         type: 3}
       propertyPath: gameInput

@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   daggerSpeed: 70
+  hitVfx: {fileID: 4021103657954561960, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
 --- !u!54 &7970385398007222699
 Rigidbody:
   m_ObjectHideFlags: 0
