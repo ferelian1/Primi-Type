@@ -7,11 +7,12 @@ using UnityEditor.Rendering;
 using System;
 
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
     private const string PLAYER_TAG = "Player";
     [SerializeField] private TextMeshPro wordText;
     [SerializeField] private float speed;
+    [SerializeField] private float health;
+    private AudioManager audio;
 
 
     [Header("Enemy Type")]
@@ -25,39 +26,39 @@ public class Enemy : MonoBehaviour
     private const string IS_DEATHTRIGGER = "isDeathTrigger";
     private Transform targetPlayer;
     private NavMeshAgent agent;
+    
 
 
-    private void Start()
-    {
+    private void Start() {
+        audio = FindObjectOfType<AudioManager>();
+
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
 
+        if (enemyType == EnemyType.Boss) {
+            speed -= 5;
+        }
 
         // Cari player berdasarkan tag
         GameObject playerObject = GameObject.FindGameObjectWithTag(PLAYER_TAG);
-        if (playerObject != null)
-        {
+        if (playerObject != null) {
             targetPlayer = playerObject.transform;
         }
 
         FindObjectOfType<Typer>().RegisterEnemy(this);
 
 
-        if (enemyType == EnemyType.alive || enemyType == EnemyType.Boss)
-        {
+        if (enemyType == EnemyType.alive || enemyType == EnemyType.Boss) {
             anim = GetComponentInChildren<Animator>();
         }
-        else
-        {
+        else {
 
         }
     }
 
-    private void Update()
-    {
+    private void Update() {
 
-        if (enemyType == EnemyType.notAlive)
-        {
+        if (enemyType == EnemyType.notAlive) {
 
             Vector3 targetPos = targetPlayer.position;
 
@@ -68,14 +69,9 @@ public class Enemy : MonoBehaviour
 
             agent.SetDestination(targetPos);
         }
-        else if (enemyType == EnemyType.alive || enemyType == EnemyType.Boss)
-        {
-            if (enemyType == EnemyType.Boss)
-            {
-                agent.speed -= 5;
-            }
-            if (targetPlayer != null && agent != null)
-            {
+        else if (enemyType == EnemyType.alive || enemyType == EnemyType.Boss) {
+
+            if (targetPlayer != null && agent != null) {
                 //agent.SetDestination(targetPlayer.position);
                 Vector3 targetPos = targetPlayer.position;
 
@@ -85,6 +81,7 @@ public class Enemy : MonoBehaviour
 
 
                 agent.SetDestination(targetPos);
+                Debug.Log("set destination to : " + targetPos);
             }
         }
 
@@ -92,22 +89,18 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void SetWord(string word)
-    {
+    public void SetWord(string word) {
         currentWord = word;
         remainingWord = word;
         UpdateWordText();
     }
 
-    public bool IsCorrectLetter(string input)
-    {
+    public bool IsCorrectLetter(string input) {
         return remainingWord.StartsWith(input);
     }
 
-    public void RemoveLetter()
-    {
-        if (remainingWord.Length > 0)
-        {
+    public void RemoveLetter() {
+        if (remainingWord.Length > 0) {
             remainingWord = remainingWord.Substring(1);
             UpdateWordText();
 
@@ -115,54 +108,48 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void UpdateWordText()
-    {
-        if (wordText != null)
-        {
+    private void UpdateWordText() {
+        if (wordText != null) {
             wordText.text = remainingWord;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(PLAYER_TAG))
-        {
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag(PLAYER_TAG)) {
             // Panggil fungsi ReduceHealth pada PlayerController
             PlayerController player = other.GetComponent<PlayerController>();
-            if (player != null)
-            {
+            if (player != null) {
                 player.ReduceHealth();
                 Die();
             }
         }
     }
 
-    public bool IsWordComplete()
-    {
+    public bool IsWordComplete() {
         return remainingWord.Length == 0;
     }
-    public void Die()
-    {
-        if (enemyType != EnemyType.Boss)
-        {
+    public void Die() {
+        audio.DestroyingNonlivingEnemy();
+        
+        Debug.Log("Die KEPANGGIL");
+        if (enemyType != EnemyType.Boss) {
             FindObjectOfType<Typer>().UnregisterEnemy(this);
             //nanti tambah animasi mati tapi bentar
             Destroy(gameObject);
         }
     }
 
-    public void Death()
-    {
-        if (enemyType != EnemyType.Boss && enemyType == EnemyType.alive)
-        {
+    public void Death() {
+        Debug.Log("Destroy KEPANGGIL");
+        audio.HurtingLivingEnemy();
+        if (enemyType != EnemyType.Boss && enemyType == EnemyType.alive) {
             FindObjectOfType<Typer>().UnregisterEnemy(this);
             StartCoroutine(WaitBeforeDeath());
 
         }
     }
 
-    private IEnumerator WaitBeforeDeath()
-    {
+    private IEnumerator WaitBeforeDeath() {
         anim.SetBool(IS_DEATHTRIGGER, true);
         agent.isStopped = true;
         yield return new WaitForSeconds(.8f);

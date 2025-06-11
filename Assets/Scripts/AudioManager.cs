@@ -4,43 +4,46 @@ using System.Security;
 using UnityEditor;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
-{
+public class AudioManager : MonoBehaviour {
     [SerializeField] private AudioSource typingSound;
     [SerializeField] private AudioSource playerHurtSound;
     [SerializeField] private AudioSource winMusic;
     [SerializeField] private AudioSource loseMusic;
+    [SerializeField] private AudioSource enemyDestroyed;
+    [SerializeField] private AudioSource enemyHurting;
 
 
 
-    public void Typing()
-    {
+    public void Typing() {
         typingSound.Play();
     }
 
-    public void PlayerHurting()
-    {
+    public void PlayerHurting() {
         playerHurtSound.Play();
     }
-    public void Winning()
-    {
+
+    public void DestroyingNonlivingEnemy() {
+        enemyDestroyed.Play();
+    }
+
+    public void HurtingLivingEnemy() {
+        enemyHurting.Play();
+    }
+    public void Winning() {
         if (!winMusic.isPlaying)  // Pastikan hanya diputar jika belum ada musik yang sedang diputar
         {
             winMusic.Play();
         }
-        else
-        {
+        else {
             Debug.Log("Musik WIN sudah diputar.");
         }
     }
-    public void Losing()
-    {
+    public void Losing() {
         if (!loseMusic.isPlaying)  // Pastikan hanya diputar jika belum ada musik yang sedang diputar
         {
             loseMusic.Play();
         }
-        else
-        {
+        else {
             Debug.Log("Musik LOSE sudah diputar.");
         }
     }

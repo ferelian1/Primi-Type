@@ -3,8 +3,7 @@ using UnityEngine;
 using TMPro;
 using Unity.AI.Navigation;
 
-public class BossSpawner : MonoBehaviour
-{
+public class BossSpawner : MonoBehaviour {
     [SerializeField] private Transform bossSpawnPoint;
     [SerializeField] private GameObject bossPrefab;
     [SerializeField] private WordBank wordBank;
@@ -13,14 +12,12 @@ public class BossSpawner : MonoBehaviour
 
     private Enemy bossEnemy;
 
-    void Start()
-    {
+    void Start() {
         StartCoroutine(SpawnBossSequence());
         navMesh.BuildNavMesh();
     }
 
-    private IEnumerator SpawnBossSequence()
-    {
+    private IEnumerator SpawnBossSequence() {
         waveText.text = " FINAL BATTLE BEGINS!!!";
         yield return new WaitForSeconds(3f);
         waveText.text = "";
@@ -38,8 +35,7 @@ public class BossSpawner : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         waveText.text = "";
 
-        if (bossObj != null)
-        {
+        if (bossObj != null) {
             // Boss belum mati, tambah 10 kata lagi
             wordBank.GenerateBossWords(10);
             SetNextBossWordToBoss();
@@ -51,27 +47,21 @@ public class BossSpawner : MonoBehaviour
         waveText.text = "YOU WIN!";
     }
 
-    private string GenerateWords(int count)
-    {
+    private string GenerateWords(int count) {
         string result = "";
-        for (int i = 0; i < count; i++)
-        {
+        for (int i = 0; i < count; i++) {
             result += wordBank.GetRandomBossWord() + " ";
         }
         return result.Trim();
     }
 
-    public void SetNextBossWordToBoss()
-    {
-        if (bossEnemy != null)
-        {
+    public void SetNextBossWordToBoss() {
+        if (bossEnemy != null) {
             string nextWord = wordBank.GetNextBossWord();
-            if (!string.IsNullOrEmpty(nextWord))
-            {
+            if (!string.IsNullOrEmpty(nextWord)) {
                 bossEnemy.SetWord(nextWord);
             }
-            else
-            {
+            else {
                 bossEnemy = null;
             }
         }
