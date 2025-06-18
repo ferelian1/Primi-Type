@@ -73,21 +73,28 @@ public class MainMenuManager : MonoBehaviour {
     }
 
     private IEnumerator LoadGameAsync(string sceneName) {
-        if (loadingPanel != null)
+        if (loadingPanel != null) {
             loadingPanel.SetActive(true);
+        }
 
-        if (loadingTimeline != null)
+        if (loadingTimeline != null) {
             loadingTimeline.Play();
+        }
+
+        yield return new WaitForSeconds((float)loadingTimeline.duration);
 
         AsyncOperation asyncOp = SceneManager.LoadSceneAsync(sceneName);
         asyncOp.allowSceneActivation = false;
 
-        while (asyncOp.progress < 0.9f)
+        while (asyncOp.progress < 0.9f) {
             yield return null;
+        }
+
+        
 
         if (loadingTimeline != null)
             loadingTimeline.Stop();
-            
+
         musicAudio.Stop();
 
         yield return null;

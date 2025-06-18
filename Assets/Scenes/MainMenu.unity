@@ -3157,7 +3157,7 @@ GameObject:
   - component: {fileID: 707594565}
   - component: {fileID: 707594564}
   m_Layer: 0
-  m_Name: Music
+  m_Name: MenuMusic
   m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3493,7 +3493,7 @@ GameObject:
   - component: {fileID: 771158944}
   - component: {fileID: 771158945}
   m_Layer: 0
-  m_Name: Setting Camera
+  m_Name: MainMenuToSettingTimeline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3989,7 +3989,7 @@ GameObject:
   - component: {fileID: 911958548}
   - component: {fileID: 911958549}
   m_Layer: 5
-  m_Name: Setting
+  m_Name: SettingGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5822,7 +5822,7 @@ GameObject:
   - component: {fileID: 1144886479}
   - component: {fileID: 1144886478}
   m_Layer: 0
-  m_Name: Hover Buttton
+  m_Name: ButtonHoverSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8171,7 +8171,7 @@ GameObject:
   - component: {fileID: 1596937924}
   - component: {fileID: 1596937925}
   m_Layer: 0
-  m_Name: LoadingScreen
+  m_Name: LoadingScreenTimeline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8764,7 +8764,7 @@ GameObject:
   - component: {fileID: 1750047647}
   - component: {fileID: 1750047646}
   m_Layer: 0
-  m_Name: Button Click
+  m_Name: ButtonClickSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10754,7 +10754,7 @@ GameObject:
   - component: {fileID: 2034863368}
   - component: {fileID: 2034863369}
   m_Layer: 0
-  m_Name: Main Menu Setting
+  m_Name: SettingToMainMenuTimeline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

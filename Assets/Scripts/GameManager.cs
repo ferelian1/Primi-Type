@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
         typer.gameObject.SetActive(true);
         audioGroup.SetActive(true);
         pausedAudioGroup.SetActive(false);
+        spawner.GetComponent<WaveSpawner>()?.ResumeSpawner();
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
 
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour {
         pauseButton.SetActive(false);
         audioGroup.SetActive(false);
         typer.gameObject.SetActive(false);
-        spawner.SetActive(false);
+        spawner.GetComponent<WaveSpawner>()?.PauseSpawner();
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
 

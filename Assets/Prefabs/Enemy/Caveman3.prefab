@@ -72,7 +72,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordText: {fileID: 4555048050251612164}
+  wordLevel: 3
   speed: 14
+  health: 0
   enemyType: 0
 --- !u!195 &8397992919936867504
 NavMeshAgent:

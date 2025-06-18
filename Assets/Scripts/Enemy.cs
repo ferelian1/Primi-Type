@@ -10,9 +10,14 @@ using System;
 public class Enemy : MonoBehaviour {
     private const string PLAYER_TAG = "Player";
     [SerializeField] private TextMeshPro wordText;
+
+    [Header("Stats")]
+    [SerializeField] private int wordLevel;
     [SerializeField] private float speed;
     [SerializeField] private float health;
-    private AudioManager audio;
+    private AudioManager enemyAudio;
+    private WordBank wordBank;
+
 
 
     [Header("Enemy Type")]
@@ -26,11 +31,12 @@ public class Enemy : MonoBehaviour {
     private const string IS_DEATHTRIGGER = "isDeathTrigger";
     private Transform targetPlayer;
     private NavMeshAgent agent;
-    
+
 
 
     private void Start() {
-        audio = FindObjectOfType<AudioManager>();
+        enemyAudio = FindObjectOfType<AudioManager>();
+        wordBank = FindObjectOfType<WordBank>();
 
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
@@ -53,6 +59,10 @@ public class Enemy : MonoBehaviour {
         }
         else {
 
+        }
+        if (enemyType != EnemyType.Boss) {
+            string enemyWord = wordBank.GetWord(wordLevel);
+            SetWord(enemyWord);
         }
     }
 
@@ -81,7 +91,7 @@ public class Enemy : MonoBehaviour {
 
 
                 agent.SetDestination(targetPos);
-                Debug.Log("set destination to : " + targetPos);
+                
             }
         }
 
@@ -129,7 +139,7 @@ public class Enemy : MonoBehaviour {
         return remainingWord.Length == 0;
     }
     public void Die() {
-        audio.DestroyingNonlivingEnemy();
+        enemyAudio.DestroyingNonlivingEnemy();
         
         Debug.Log("Die KEPANGGIL");
         if (enemyType != EnemyType.Boss) {
@@ -141,7 +151,7 @@ public class Enemy : MonoBehaviour {
 
     public void Death() {
         Debug.Log("Destroy KEPANGGIL");
-        audio.HurtingLivingEnemy();
+        enemyAudio.HurtingLivingEnemy();
         if (enemyType != EnemyType.Boss && enemyType == EnemyType.alive) {
             FindObjectOfType<Typer>().UnregisterEnemy(this);
             StartCoroutine(WaitBeforeDeath());

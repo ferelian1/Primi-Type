@@ -20,7 +20,7 @@ public class WaveSpawner : MonoBehaviour {
     [Tooltip("MAU ADA BERAPA WAVENYA")]
     [SerializeField] private int totalWave;
 
-
+    private bool isPaused = false;
     private int currentWave = 1;
     private bool isSpawning = false;
 
@@ -29,8 +29,19 @@ public class WaveSpawner : MonoBehaviour {
         navmesh.BuildNavMesh();
     }
 
+    public void PauseSpawner() {
+        isPaused = true;
+    }
+
+    public void ResumeSpawner() {
+        isPaused = false;
+    }
+
+
     IEnumerator StartNextWave() {
         yield return new WaitForSeconds(2f);
+
+
         while (currentWave <= totalWave) {
             waveText.text = $"Wave {currentWave}";
             yield return new WaitForSeconds(2f);
@@ -41,6 +52,11 @@ public class WaveSpawner : MonoBehaviour {
             if (currentWave < totalWave + 1) {
                 int enemyCount = 10 + (currentWave - 1) * 5;
                 for (int i = 0; i < enemyCount; i++) {
+
+                    while (isPaused) {
+                        yield return null;
+                    }
+
                     SpawnEnemy(currentWave);
                     yield return new WaitForSeconds(SpawnRatePerSecond);
                 }
@@ -71,10 +87,7 @@ public class WaveSpawner : MonoBehaviour {
 
         GameObject enemyObj = Instantiate(prefab, spawnPoint.position, Quaternion.identity, spawnPoint);
         Enemy enemy = enemyObj.GetComponent<Enemy>();
-
-
-        string word = wordBank.GetWord(level);
-        enemy.SetWord(word);
+        
     }
 
 
